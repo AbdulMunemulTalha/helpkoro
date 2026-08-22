@@ -1,17 +1,25 @@
-# Api Standards
+# API Standards
 
 ## Purpose
-This specification is the source of truth for **Api Standards** in HelpKoro's Bangladesh-first fundraising platform. It defines the product decision, engineering boundary, and operational ownership needed before release.
+This specification is the source of truth for **API Standards** in HelpKoro's Bangladesh-first fundraising platform. The concrete wire conventions below are fixed by [ADR-006](../12-decisions/adr-006-api-and-scaffolding-conventions.md) and implemented by the `api` app and `@helpkoro/contracts`.
 
-## Requirements and decisions
-Use versioned contracts, server-side authorization, least privilege, signed callbacks, idempotency, audit trails, and observable failure recovery. Financial state derives from immutable ledger entries.
-Define inputs, state transitions, authorised actors, data ownership, notifications, support handling, and audit events. Link implementation work to this document and update it when the decision changes.
+## Versioning and surface
+Expose versioned REST JSON under `/v1` for auth, me, campaigns, files, donations, payments, payouts, reports, reviews, admin, and provider webhooks. Health endpoints (`/health`, `/health/ready`) are operational and live **outside** `/v1`. Request and response schemas are defined once as Zod schemas in `@helpkoro/contracts`; OpenAPI is generated from those schemas.
 
-## Workflow and acceptance criteria
-Document initiation, validation, approval or automation steps, success state, failure/retry behaviour, and escalation. Acceptance: an end-to-end test proves correct authorization, clear user status, idempotent recovery where money or asynchronous work is involved, and an observable audit trail.
+## Response envelope
+- Success: `{ "data": <payload>, "meta": { "requestId": "<uuid>" } }`.
+- Error: `{ "error": { "code": <StableCode>, "message": "<safe message>", "details"?: <unknown> }, "meta": { "requestId": "<uuid>" } }`.
+
+Stable error codes: `AUTH_REQUIRED`, `FORBIDDEN`, `VALIDATION_FAILED`, `STATE_CONFLICT`, `IDEMPOTENCY_CONFLICT`, `PAYMENT_PENDING`, `REVIEW_REQUIRED`, and `INTERNAL` for unmapped 5xx. Never expose stack traces or raw provider errors.
+
+## Field and format conventions
+UUID v7 identifiers, ISO-8601 timestamps, integer minor-unit money with an explicit currency code, and cursor pagination: list endpoints accept `?limit=` and `?cursor=` and return `data.items` plus `data.pageInfo { nextCursor, hasMore }`. The cursor is opaque.
+
+## Correlation and idempotency
+Every request carries a correlation id in the `x-request-id` header (honoured if well-formed, otherwise generated) that is echoed to the client and threaded through logs, audit events, and jobs. Every money-moving write requires an `Idempotency-Key` header; replays must not duplicate financial effects. Provider webhook signatures are verified before any side effect.
 
 ## Security, privacy, and compliance
-Collect the minimum data; restrict sensitive identity, beneficiary, payment, payout, and moderation evidence; redact logs; apply approved retention; and test abuse cases. Bangladesh-specific regulatory and provider assumptions require professional/legal/provider validation before production use.
+Server-side authorization by role, resource ownership, and state; least privilege; redacted logs; approved retention. Bangladesh-specific regulatory and provider assumptions require professional/legal/provider validation before production use.
 
 ## Cross-references
-Read CLAUDE.md, 00-foundations/principles.md, 03-architecture/authorization-model.md, 06-trust-safety/incident-response.md, and 11-quality/acceptance-testing.md. Financial work also follows 03-architecture/ledger-architecture.md and 05-payments/reconciliation.md.
+Read CLAUDE.md, 12-decisions/adr-005-stack-and-tooling.md, 12-decisions/adr-006-api-and-scaffolding-conventions.md, 13-build-blueprint/repository-and-api-contract.md, and 11-quality/acceptance-testing.md.

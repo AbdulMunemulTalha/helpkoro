@@ -2,7 +2,7 @@
 
 ## Decision
 
-Build a TypeScript modular monolith first: Next.js for public and operations web apps; Fastify or NestJS API; PostgreSQL; Redis/BullMQ; S3-compatible storage; OpenTelemetry; Docker Compose; managed CI/CD. Split services only for a measured isolation, scale, or ownership need.
+Build a TypeScript modular monolith first: Next.js for public and operations web apps; NestJS-on-Fastify API (see ADR-005); PostgreSQL; Redis/BullMQ; S3-compatible storage; OpenTelemetry; Docker Compose; managed CI/CD. Split services only for a measured isolation, scale, or ownership need.
 
 ## Modules
 

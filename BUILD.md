@@ -4,7 +4,7 @@ This is the execution entry point for building the complete platform with Claude
 
 ## Recommended baseline
 
-Use a TypeScript monorepo: Next.js for web applications, Fastify or NestJS for the API, PostgreSQL for data and ledger, Redis plus BullMQ for background work, S3-compatible object storage, OpenTelemetry, Docker, and managed deployment. Begin as a modular monolith; payment providers are adapters.
+Use a TypeScript monorepo: Next.js for web applications, NestJS on the Fastify adapter for the API (see ADR-005), PostgreSQL for data and ledger, Redis plus BullMQ for background work, S3-compatible object storage, OpenTelemetry, Docker, and managed deployment. Begin as a modular monolith; payment providers are adapters.
 
 ## Read before coding
 
