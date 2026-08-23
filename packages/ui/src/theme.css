@@ -1,0 +1,17 @@
+/*
+ * Shared design tokens for HelpKoro apps (Tailwind v4, CSS-first).
+ *
+ * Apps import Tailwind and then this file:
+ *   @import "tailwindcss";
+ *   @import "@helpkoro/ui/theme.css";
+ *   @source "../node_modules/@helpkoro/ui/dist";
+ *
+ * The @source line lets Tailwind detect utility classes used inside built
+ * @helpkoro/ui components. Palette values are provisional placeholders — the
+ * final brand palette and Bangla type ramp are a design deliverable.
+ */
+@theme {
+  --color-brand: #0f766e;
+  --color-brand-contrast: #ffffff;
+  --font-sans: 'Inter', 'Noto Sans Bengali', system-ui, sans-serif;
+}
