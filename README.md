@@ -10,7 +10,7 @@ Start with `docs/00-foundations/product-vision.md`, then read the relevant domai
 
 Delivery follows the phased roadmap in `docs/13-build-blueprint/build-roadmap.md`.
 
-- **Phase 0 — Platform (foundation, in progress):** monorepo apps/packages, config/secrets contract, migrations framework, API shell (health, structured logging, tracing, error envelope, feature flags, audit-event base), and CI. Accounts/sessions/RBAC land in a follow-up pass.
+- **Phase 0 — Platform (foundation, in progress):** monorepo apps/packages, config/secrets contract, database migrations, CI, and the API application shell — NestJS on Fastify serving the ADR-006 contract: unversioned `/health` + `/health/ready` probes, `x-request-id` correlation, structured pino logging, optional OpenTelemetry tracing, the `{ data, meta }` success / stable-error envelope, DB-backed feature flags, and the append-only audit-event base. Business routes are served under `/v1`; integration tests exercise the app against Postgres + Redis in CI. Accounts, sessions, and RBAC are the remaining Phase 0 pass.
 - Phases 1–4 (campaigns, donations/ledger, payouts/operations, launch hardening) are not started.
 
 ## Monorepo layout
@@ -34,10 +34,10 @@ cp .env.example .env
 pnpm services:up          # Postgres + Redis + MinIO (requires Docker)
 pnpm --filter @helpkoro/db migrate
 pnpm --filter @helpkoro/db seed
-pnpm dev                  # run all apps
+pnpm dev                  # run all apps (or: pnpm --filter api dev)
 ```
 
-Quality gates (run in CI): `pnpm format:check`, `pnpm lint`, `pnpm typecheck`, `pnpm build`, `pnpm test`.
+Quality gates (run in CI): `pnpm format:check`, `pnpm lint`, `pnpm typecheck`, `pnpm build`, `pnpm test`. The API integration tests (`pnpm --filter api test:e2e`) additionally require a running Postgres + Redis (`pnpm services:up`).
 
 ## Status
 

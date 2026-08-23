@@ -29,3 +29,31 @@ export const ERROR_STATUS: Record<StableErrorCode, number> = {
   REVIEW_REQUIRED: 409,
   INTERNAL: 500,
 };
+
+/**
+ * Domain/application error carrying a stable, client-safe error code. Any layer
+ * (domain rules, services) may throw it without importing app/framework code;
+ * the API's exception filter maps it to the wire error envelope + HTTP status.
+ * The `message` must be safe to expose — never embed secrets, raw provider
+ * errors, or stack context. `details` is optional structured, safe context.
+ */
+export class AppError extends Error {
+  readonly code: StableErrorCode;
+  readonly status: number;
+  readonly details?: unknown;
+
+  constructor(code: StableErrorCode, message: string, details?: unknown) {
+    super(message);
+    this.name = 'AppError';
+    this.code = code;
+    this.status = ERROR_STATUS[code];
+    this.details = details;
+    // Preserve prototype chain when compiled to older targets.
+    Object.setPrototypeOf(this, AppError.prototype);
+  }
+}
+
+/** True if `value` is an {@link AppError} (safe across realms via the name tag). */
+export function isAppError(value: unknown): value is AppError {
+  return value instanceof AppError;
+}
