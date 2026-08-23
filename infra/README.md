@@ -6,12 +6,12 @@ Local development infrastructure and (later) deployment manifests.
 
 `docker-compose.yml` starts everything the app needs for local development:
 
-| Service  | Purpose                         | Local address           |
-| -------- | ------------------------------- | ----------------------- |
-| Postgres | Primary database + money ledger | `localhost:5432`        |
-| Redis    | Queues (BullMQ), rate limits    | `localhost:6379`        |
-| MinIO    | S3-compatible object storage    | `localhost:9000` (API)  |
-| MinIO UI | Bucket console                  | `localhost:9001`        |
+| Service  | Purpose                         | Local address          |
+| -------- | ------------------------------- | ---------------------- |
+| Postgres | Primary database + money ledger | `localhost:5432`       |
+| Redis    | Queues (BullMQ), rate limits    | `localhost:6379`       |
+| MinIO    | S3-compatible object storage    | `localhost:9000` (API) |
+| MinIO UI | Bucket console                  | `localhost:9001`       |
 
 ```bash
 pnpm services:up      # start all

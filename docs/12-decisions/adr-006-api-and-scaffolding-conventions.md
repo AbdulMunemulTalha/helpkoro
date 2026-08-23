@@ -34,7 +34,7 @@ This ADR records the conventions chosen for the Phase 0 foundation. Items explic
 
 8. **Node runtime.** The workspace targets **Node 24** (matching ADR-005 and `.nvmrc`). `package.json#engines.node` and `@types/node` are aligned to 24, resolving the earlier scaffold mismatch.
 
-9. **Authentication transport (hybrid).** First-party web apps (`web`, `operations`) authenticate with httpOnly, Secure, SameSite cookies protected against CSRF; API and future native-mobile clients use `Authorization: Bearer`. The token *primitives* remain as ADR-005 fixed them (Argon2id, short-lived access + rotating refresh via `jose`). Only the transport contract is recorded now; the implementation lands in the Phase 0 step-4 (auth) follow-up.
+9. **Authentication transport (hybrid).** First-party web apps (`web`, `operations`) authenticate with httpOnly, Secure, SameSite cookies protected against CSRF; API and future native-mobile clients use `Authorization: Bearer`. The token _primitives_ remain as ADR-005 fixed them (Argon2id, short-lived access + rotating refresh via `jose`). Only the transport contract is recorded now; the implementation lands in the Phase 0 step-4 (auth) follow-up.
 
 10. **Money and lifecycle.** Money is stored as integer minor units with an explicit `currency` code column. The **default currency and its minor-unit exponent remain deferred** (a country-configuration seam per ADR-005; the docs never name BDT/poisha). **Soft-delete policy remains deferred**; audit and outbox tables are append-only.
 
