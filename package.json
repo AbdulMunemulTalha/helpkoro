@@ -20,6 +20,8 @@
     "dev": "turbo run dev",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "build:status": "node scripts/build-status.mjs",
+    "build:status:check": "node scripts/build-status.mjs --check",
     "services:up": "docker compose -f infra/docker-compose.yml up -d",
     "services:down": "docker compose -f infra/docker-compose.yml down",
     "services:logs": "docker compose -f infra/docker-compose.yml logs -f"

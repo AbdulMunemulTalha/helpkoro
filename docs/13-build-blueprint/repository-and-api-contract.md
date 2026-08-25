@@ -19,4 +19,4 @@ Expose versioned REST JSON under /v1 for auth, me, campaigns, files, donations, 
 
 ## Acceptance criteria
 
-OpenAPI is generated from source schemas. Contract tests cover every endpoint and webhook signatures are verified before any side effect. Stable errors include AUTH_REQUIRED, FORBIDDEN, VALIDATION_FAILED, STATE_CONFLICT, IDEMPOTENCY_CONFLICT, PAYMENT_PENDING, and REVIEW_REQUIRED; never expose stack traces or raw provider errors.
+OpenAPI is generated from source schemas. Contract tests cover every endpoint and webhook signatures are verified before any side effect. Stable errors include AUTH_REQUIRED, FORBIDDEN, VALIDATION_FAILED, STATE_CONFLICT, IDEMPOTENCY_CONFLICT, PAYMENT_PENDING, REVIEW_REQUIRED, and RATE_LIMITED (429, added by ADR-007); never expose stack traces or raw provider errors.

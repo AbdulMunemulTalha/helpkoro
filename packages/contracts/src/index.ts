@@ -6,3 +6,5 @@ export * from './errors';
 export * from './envelope';
 export * from './pagination';
 export * from './env';
+export * from './auth';
+export * from './campaigns';

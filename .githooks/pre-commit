@@ -1,0 +1,23 @@
+#!/bin/sh
+# HelpKoro — keep the build-status tracker in sync on every commit.
+#
+# Enable once per clone:
+#   git config core.hooksPath .githooks
+#
+# This regenerates the auto block in docs/13-build-blueprint/build-status.md from the
+# current tree and stages it, so each completed part is reflected in the same commit.
+# Non-fatal by design: a missing Node or a generator error never blocks a commit.
+#
+# Note: the "as of commit" stamp references the PARENT commit, because HEAD only advances
+# after this hook runs. If you need the exact new SHA in the file instead, move this to a
+# post-commit hook (it will then leave build-status.md as an uncommitted change to add next).
+
+command -v node >/dev/null 2>&1 || exit 0
+
+node scripts/build-status.mjs >/dev/null 2>&1 || {
+  echo "build-status: generator failed; committing without refresh." >&2
+  exit 0
+}
+
+git add docs/13-build-blueprint/build-status.md 2>/dev/null || true
+exit 0

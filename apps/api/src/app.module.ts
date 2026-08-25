@@ -2,6 +2,8 @@ import { Module, type DynamicModule } from '@nestjs/common';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import type { Logger } from 'pino';
 import { AuditModule } from './audit/audit.module';
+import { AuthModule } from './auth/auth.module';
+import { CampaignsModule } from './campaigns/campaigns.module';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 import { EnvelopeInterceptor } from './common/interceptors/envelope.interceptor';
 import { LoggerModule } from './common/logger/logger.module';
@@ -11,6 +13,7 @@ import { FeatureFlagsModule } from './feature-flags/feature-flags.module';
 import { HealthModule } from './health/health.module';
 import { DatabaseModule } from './infra/database.module';
 import { RedisModule } from './infra/redis.module';
+import { ReviewsModule } from './reviews/reviews.module';
 
 export interface AppModuleOptions {
   /** The process-wide pino logger, created in the composition root. */
@@ -35,6 +38,9 @@ export class AppModule {
         HealthModule,
         FeatureFlagsModule,
         AuditModule,
+        AuthModule,
+        CampaignsModule,
+        ReviewsModule,
       ],
       controllers: [DiagnosticsController],
       providers: [

@@ -16,6 +16,8 @@ export interface AuditInput {
   actorType: ActorType;
   entityId?: string;
   actorId?: string;
+  /** The session that originated the action (identity-access-and-security.md). */
+  sourceSessionId?: string;
   reason?: string;
   beforeSummary?: unknown;
   afterSummary?: unknown;
@@ -31,6 +33,7 @@ export class AuditService {
       id: uuidv7(),
       actorId: input.actorId ?? null,
       actorType: input.actorType,
+      sourceSessionId: input.sourceSessionId ?? null,
       action: input.action,
       entityType: input.entityType,
       entityId: input.entityId ?? null,

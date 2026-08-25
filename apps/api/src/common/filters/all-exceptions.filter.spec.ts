@@ -10,13 +10,13 @@ describe('mapHttpStatusToCode', () => {
     expect(mapHttpStatusToCode(402)).toBe('PAYMENT_PENDING');
     expect(mapHttpStatusToCode(403)).toBe('FORBIDDEN');
     expect(mapHttpStatusToCode(409)).toBe('STATE_CONFLICT');
+    expect(mapHttpStatusToCode(429)).toBe('RATE_LIMITED');
   });
 
   it('maps 5xx to INTERNAL and other 4xx to VALIDATION_FAILED', () => {
     expect(mapHttpStatusToCode(500)).toBe('INTERNAL');
     expect(mapHttpStatusToCode(503)).toBe('INTERNAL');
     expect(mapHttpStatusToCode(404)).toBe('VALIDATION_FAILED');
-    expect(mapHttpStatusToCode(429)).toBe('VALIDATION_FAILED');
   });
 
   it('is exercised by a real HttpException status', () => {

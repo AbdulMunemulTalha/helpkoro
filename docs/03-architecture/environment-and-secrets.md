@@ -8,7 +8,7 @@ This specification is the source of truth for **Environment and Secrets** in Hel
 
 Every service validates its environment at process start with a Zod schema exported from `@helpkoro/contracts`. Missing or malformed required variables fail fast with a clear, non-sensitive message; the process does not boot in a partially-configured state. `.env.example` is the canonical list of variables and holds development-only defaults that match the services in `infra/docker-compose.yml`.
 
-Phase 0 variables: `NODE_ENV`, `PORT`, `LOG_LEVEL`, `DATABASE_URL`, `REDIS_URL`, the `S3_*` object-storage group, `OTEL_SERVICE_NAME` / optional `OTEL_EXPORTER_OTLP_ENDPOINT`, `REQUEST_ID_HEADER`, and `API_URL` for the web apps. Authentication secrets are introduced in the Phase 0 step-4 (auth) follow-up.
+Phase 0 variables: `NODE_ENV`, `PORT`, `LOG_LEVEL`, `DATABASE_URL`, `REDIS_URL`, the `S3_*` object-storage group, `OTEL_SERVICE_NAME` / optional `OTEL_EXPORTER_OTLP_ENDPOINT`, `REQUEST_ID_HEADER`, and `API_URL` for the web apps. Authentication ([ADR-007](../12-decisions/adr-007-authentication-sessions-and-rbac.md)) adds `AUTH_ACCESS_TOKEN_SECRET` and `AUTH_REFRESH_TOKEN_SECRET` (each ≥ 32 chars and distinct; the development fallbacks are rejected under `NODE_ENV=production`), `AUTH_ACCESS_TOKEN_TTL_SECONDS`, `AUTH_REFRESH_TOKEN_TTL_SECONDS`, `AUTH_STEP_UP_WINDOW_SECONDS`, `AUTH_COOKIE_SECURE` (disable only for local http), and optional `AUTH_COOKIE_DOMAIN`.
 
 ## Secrets handling
 

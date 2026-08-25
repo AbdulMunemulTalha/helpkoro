@@ -5,3 +5,12 @@ out
 coverage
 .turbo
 pnpm-lock.yaml
+
+# Generated (owned by scripts/build-status.mjs; tables are re-padded by prettier otherwise)
+docs/13-build-blueprint/build-status.md
+
+# Next.js generated ambient types (owned by `next`, regenerated on build)
+**/next-env.d.ts
+
+# graphify knowledge-graph output
+graphify-out

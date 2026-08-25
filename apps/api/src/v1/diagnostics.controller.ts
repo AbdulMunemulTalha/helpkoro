@@ -1,13 +1,16 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { AppError } from '@helpkoro/contracts';
+import { Public } from '../auth/auth.decorators';
 import { ConfigService } from '../config/config.service';
 
 /**
  * Non-production diagnostics that exercise the ADR-006 wire contract end to end:
  * `echo` returns a success envelope, `boom` throws an {@link AppError} so the
  * exception filter produces an error envelope. Both are disabled in production.
- * Mounted under the `/v1` global prefix ⇒ `/v1/_diagnostics/...`.
+ * Mounted under the `/v1` global prefix ⇒ `/v1/_diagnostics/...`. `@Public` so
+ * the global auth guard does not require a token to reach them.
  */
+@Public()
 @Controller('_diagnostics')
 export class DiagnosticsController {
   constructor(private readonly config: ConfigService) {}

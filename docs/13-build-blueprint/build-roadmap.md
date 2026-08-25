@@ -1,5 +1,7 @@
 # Build Roadmap
 
+> Live delivery status against these phases is tracked in [build-status.md](build-status.md), auto-generated from the repository. This roadmap describes phase _intent_; the tracker reports what is actually built.
+
 ## Phase 0: Platform
 
 Create monorepo, Docker, CI, configuration/secrets contract, database migrations, shared UI, API shell, auth/RBAC, audit events, and telemetry. Exit: all local and CI commands pass.

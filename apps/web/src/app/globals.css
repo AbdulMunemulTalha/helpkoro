@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+@import '@helpkoro/ui/theme.css';
+
+/*
+ * The shared UI package ships TSX source (transpiled by Next), not prebuilt CSS,
+ * so Tailwind must scan its source to generate the utilities it uses (e.g. the
+ * brand-token classes on <Button>). App files under this directory are detected
+ * automatically.
+ */
+@source '../../../../packages/ui/src';
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100dvh;
+}

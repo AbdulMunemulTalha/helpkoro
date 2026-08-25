@@ -30,6 +30,8 @@ export function mapHttpStatusToCode(status: number): StableErrorCode {
       return 'FORBIDDEN';
     case 409:
       return 'STATE_CONFLICT';
+    case 429:
+      return 'RATE_LIMITED';
     default:
       // 5xx (and anything unmapped at/above 500) is INTERNAL; other 4xx fall
       // back to VALIDATION_FAILED since the stable set has no generic 4xx code.

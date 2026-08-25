@@ -33,3 +33,6 @@ Thumbs.db
 
 # Docker volumes (if bind-mounted locally)
 infra/.data/
+
+# graphify knowledge-graph output (regenerate with /graphify)
+graphify-out/

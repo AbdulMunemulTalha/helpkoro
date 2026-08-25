@@ -1,13 +1,16 @@
 import { Controller, Get, Res } from '@nestjs/common';
 import type { FastifyReply } from 'fastify';
+import { Public } from '../auth/auth.decorators';
 import { SkipEnvelope } from '../common/interceptors/skip-envelope.decorator';
 import { HealthService, type LivenessResult } from './health.service';
 
 /**
  * Health probes. Registered outside the `/v1` prefix (see `setGlobalPrefix`
  * exclude) and opted out of the success envelope — orchestrators expect the raw
- * `{ status, checks }` shape (ADR-006).
+ * `{ status, checks }` shape (ADR-006). `@Public` so the global auth guard lets
+ * unauthenticated probes through.
  */
+@Public()
 @Controller()
 export class HealthController {
   constructor(private readonly health: HealthService) {}

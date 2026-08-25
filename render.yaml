@@ -1,0 +1,40 @@
+# Render Blueprint — HelpKoro API (NestJS on Fastify).
+#
+# Deploy: Render Dashboard → New → Blueprint → connect this repo → apply.
+# Render reads this file and provisions the service with the settings below.
+# Secrets marked `sync: false` are NOT stored here — Render prompts for them in
+# the dashboard on first apply, so real credentials never touch the repo.
+#
+# The API is the BFF's upstream: the browser never calls it directly (no CORS),
+# `apps/web` proxies server-to-server. Region is Singapore (closest to Bangladesh).
+services:
+  - type: web
+    name: helpkoro-api
+    runtime: node
+    region: singapore
+    plan: free # cold-starts after ~15 min idle; upgrade to `starter` to stay warm
+    branch: feat/phase-0-foundation
+    rootDir: .
+    # --prod=false so build-only devDeps (nest cli, turbo, swc) install; turbo
+    # builds the API and its workspace deps (contracts, db, domain) via ^build.
+    buildCommand: corepack enable && pnpm install --frozen-lockfile --prod=false && pnpm exec turbo run build --filter=api
+    startCommand: node apps/api/dist/main.js
+    healthCheckPath: /health # unversioned, excluded from the /v1 prefix (bootstrap.ts)
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: LOG_LEVEL
+        value: info
+      - key: AUTH_COOKIE_SECURE
+        value: "true" # HTTPS everywhere in prod; cookies get the Secure flag
+      # PORT is injected by Render automatically; the app reads process.env.PORT.
+      # --- entered in the Render dashboard (sync: false) ---
+      - key: DATABASE_URL # Supabase session-pooler URL, ?sslmode=require
+        sync: false
+      - key: REDIS_URL # Upstash rediss:// URL
+        sync: false
+      - key: AUTH_ACCESS_TOKEN_SECRET # strong, distinct — see deploy notes
+        sync: false
+      - key: AUTH_REFRESH_TOKEN_SECRET # strong, distinct — must differ from access
+        sync: false

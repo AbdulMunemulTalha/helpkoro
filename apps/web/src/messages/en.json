@@ -1,0 +1,185 @@
+{
+  "common": {
+    "appName": "HelpKoro",
+    "tagline": "Trusted fundraising, built for Bangladesh.",
+    "errorTitle": "Something went wrong",
+    "errorBody": "We couldn't load this page. Please try again shortly.",
+    "retry": "Try again"
+  },
+  "nav": {
+    "home": "Home",
+    "discover": "Campaigns",
+    "start": "Start fundraising",
+    "dashboard": "Dashboard",
+    "login": "Log in",
+    "language": "Language"
+  },
+  "home": {
+    "title": "Stand beside those who need it",
+    "subtitle": "Raise funds for personal, community, and emergency needs on a trusted, Bangladesh-first platform.",
+    "browseCta": "Browse campaigns",
+    "startCta": "Start fundraising"
+  },
+  "discover": {
+    "heading": "All campaigns",
+    "subheading": "Browse active fundraisers and stand beside those who need it.",
+    "featuredHeading": "Active campaigns",
+    "viewAll": "View all",
+    "filterLabel": "Filter by category",
+    "allCategories": "All categories",
+    "empty": "No campaigns are live right now.",
+    "loadMore": "Load more"
+  },
+  "categories": {
+    "medical": "Medical",
+    "emergency": "Emergency",
+    "memorial": "Memorial",
+    "education": "Education",
+    "community": "Community",
+    "disaster_response": "Disaster response",
+    "nonprofit": "Nonprofit",
+    "personal": "Personal"
+  },
+  "campaign": {
+    "goalLabel": "Goal",
+    "byOrganizer": "Organizer",
+    "beneficiaryLabel": "Beneficiary",
+    "publishedOn": "Published",
+    "storyHeading": "The full story",
+    "donateSoonTitle": "Donations opening soon",
+    "donateSoonBody": "Donations aren't open on HelpKoro yet. You'll soon be able to give securely.",
+    "donateSoonCta": "Donate (soon)",
+    "reportTitle": "Concerned about this campaign?",
+    "reportBody": "Reporting will be available soon.",
+    "beneficiary": {
+      "myself": "Myself",
+      "someone_else": "Someone else",
+      "organization": "An organization"
+    }
+  },
+  "auth": {
+    "loginTitle": "Log in",
+    "loginSubtitle": "Welcome back. Sign in to manage your fundraisers.",
+    "registerTitle": "Create your account",
+    "registerSubtitle": "Set up an account to start and manage fundraisers.",
+    "email": "Email",
+    "password": "Password",
+    "displayName": "Your name",
+    "passwordHint": "Use at least 12 characters.",
+    "submitting": "Please wait…",
+    "loginCta": "Log in",
+    "registerCta": "Create account",
+    "noAccount": "New to HelpKoro?",
+    "haveAccount": "Already have an account?",
+    "errors": {
+      "email": "Enter a valid email address.",
+      "password": "Use at least 12 characters.",
+      "displayName": "Enter your name.",
+      "emailTaken": "An account with that email already exists.",
+      "invalidCredentials": "Invalid email or password.",
+      "rateLimited": "Too many attempts. Please wait a moment and try again.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "dashboard": {
+    "title": "Your dashboard",
+    "greeting": "Signed in as {name}",
+    "logout": "Log out",
+    "loggingOut": "Logging out…",
+    "launchedBanner": "Your fundraiser was submitted for review. We'll let you know once it's approved.",
+    "startPrompt": "Ready to raise funds for a cause?",
+    "startCta": "Start a fundraiser",
+    "yourCampaigns": "Your fundraisers",
+    "empty": "You haven't created any fundraisers yet.",
+    "viewPublic": "View public page",
+    "nextSteps": {
+      "draft": "Draft — finish and submit it for review when you're ready.",
+      "submitted": "Submitted — waiting to be picked up for review.",
+      "under_review": "Under review — our team is checking the details.",
+      "live": "Live — your fundraiser is public.",
+      "paused": "Paused — temporarily not accepting support.",
+      "closed": "Closed — this fundraiser has ended.",
+      "rejected": "Not approved — review the feedback and make changes."
+    }
+  },
+  "states": {
+    "draft": "Draft",
+    "submitted": "Submitted",
+    "under_review": "Under review",
+    "live": "Live",
+    "paused": "Paused",
+    "closed": "Closed",
+    "rejected": "Not approved"
+  },
+  "start": {
+    "title": "Start a fundraiser",
+    "stepProgress": "Step {current} of {total}",
+    "next": "Continue",
+    "back": "Back",
+    "intro": {
+      "heading": "Let's set up your fundraiser",
+      "body": "Answer a few short questions. You can save your progress and finish later."
+    },
+    "beneficiary": {
+      "legend": "Who are you raising funds for?",
+      "myself": "Myself",
+      "someone_else": "Someone else",
+      "organization": "An organization",
+      "relationshipLabel": "Your relationship to them",
+      "orgNote": "Fundraising on behalf of an organization needs verification. We'll guide you through it after launch is enabled."
+    },
+    "cause": {
+      "legend": "About your cause",
+      "categoryLabel": "Category",
+      "titleLabel": "Title",
+      "summaryLabel": "Short summary",
+      "goalLabel": "Goal amount ({currency})"
+    },
+    "account": {
+      "legend": "Your account",
+      "signedIn": "You're signed in. Continue to add your story.",
+      "needAccount": "Create an account or log in to launch your fundraiser.",
+      "register": "Create account",
+      "login": "Log in",
+      "progressSaved": "Your progress is saved on this device."
+    },
+    "story": {
+      "legend": "Tell your story",
+      "optionalHint": "These details are optional but help supporters understand your cause.",
+      "storyLabel": "Full story",
+      "intendedUseLabel": "How the funds will be used",
+      "timelineLabel": "Timeline"
+    },
+    "deferred": {
+      "title": "Coming a little later",
+      "payout": "Payout details are collected securely once payouts are enabled.",
+      "media": "Photos and documents can be added when uploads are enabled."
+    },
+    "review": {
+      "legend": "Review and launch",
+      "launchCta": "Launch fundraiser",
+      "launching": "Submitting…"
+    },
+    "result": {
+      "disabledTitle": "Fundraiser creation isn't open yet",
+      "disabledBody": "We're putting the final touches on launching fundraisers. Your details are saved on this device — please check back soon.",
+      "forbiddenTitle": "You can't create a fundraiser yet",
+      "forbiddenBody": "Your account isn't able to create fundraisers right now.",
+      "authTitle": "Please sign in first",
+      "authBody": "You need to be signed in to launch a fundraiser. Your progress is saved.",
+      "authCta": "Log in",
+      "draftSavedTitle": "Saved as a draft",
+      "draftSavedBody": "We saved your fundraiser as a draft, but couldn't submit it for review. You can submit it from your dashboard.",
+      "goToDashboard": "Go to dashboard",
+      "backToCampaigns": "Browse campaigns"
+    },
+    "errors": {
+      "relationshipRequired": "Please tell us your relationship to them.",
+      "title": "Title must be between 8 and 120 characters.",
+      "summary": "Summary must be between 20 and 300 characters.",
+      "goal": "Enter a goal amount greater than zero.",
+      "generic": "Something went wrong. Please try again.",
+      "invalidDraft": "Some details need fixing. Please review your entries."
+    }
+  }
+}

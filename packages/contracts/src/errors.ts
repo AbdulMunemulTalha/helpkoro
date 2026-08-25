@@ -3,6 +3,7 @@ import { z } from 'zod';
 /**
  * Stable API error codes (ADR-006 / repository-and-api-contract.md). Clients may
  * switch on these; they must remain stable. `INTERNAL` covers unmapped 5xx.
+ * `RATE_LIMITED` (429) was added by ADR-007 for auth throttling.
  */
 export const STABLE_ERROR_CODES = [
   'AUTH_REQUIRED',
@@ -12,6 +13,7 @@ export const STABLE_ERROR_CODES = [
   'IDEMPOTENCY_CONFLICT',
   'PAYMENT_PENDING',
   'REVIEW_REQUIRED',
+  'RATE_LIMITED',
   'INTERNAL',
 ] as const;
 
@@ -27,6 +29,7 @@ export const ERROR_STATUS: Record<StableErrorCode, number> = {
   IDEMPOTENCY_CONFLICT: 409,
   PAYMENT_PENDING: 402,
   REVIEW_REQUIRED: 409,
+  RATE_LIMITED: 429,
   INTERNAL: 500,
 };
 
