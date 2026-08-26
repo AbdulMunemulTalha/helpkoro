@@ -13,7 +13,7 @@ services:
     runtime: node
     region: singapore
     plan: free # cold-starts after ~15 min idle; upgrade to `starter` to stay warm
-    branch: feat/phase-0-foundation
+    branch: main
     rootDir: .
     # --prod=false so build-only devDeps (nest cli, turbo, swc) install; turbo
     # builds the API and its workspace deps (contracts, db, domain) via ^build.
