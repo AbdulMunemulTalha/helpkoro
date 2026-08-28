@@ -23,7 +23,7 @@ import { UsersService } from './users.service';
  *   3. {@link AuthGuard}          — verify the access token, attach the principal
  *   4. {@link AuthorizationGuard} — roles / policy matrix / step-up freshness
  * Global guards execute in registration order, so this array order is load-bearing.
- * DB/Redis/Config come from the global infra modules; audit is imported here.
+ * DB/Config come from the global infra modules; audit is imported here.
  */
 @Module({
   imports: [AuditModule],

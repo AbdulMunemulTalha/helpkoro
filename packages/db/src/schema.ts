@@ -197,6 +197,24 @@ export const outboxEvents = pgTable(
 );
 
 /**
+ * Fixed-window rate-limit counters (auth throttling — login/register/reset/
+ * step-up). One row per limiter key (`"<route>:<ip>"`); the first hit in a
+ * window sets `expires_at`, later hits increment `count`, and the window resets
+ * once `expires_at` passes. This is the Postgres-backed replacement for the old
+ * Redis INCR/EXPIRE limiter, so the platform needs no separate Redis service.
+ * Rows are disposable state, safe to prune wherever `expires_at < now()`.
+ */
+export const rateLimitCounters = pgTable(
+  'rate_limit_counters',
+  {
+    key: text('key').primaryKey(),
+    count: integer('count').notNull().default(0),
+    expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  },
+  (t) => [index('rate_limit_counters_expires_at_idx').on(t.expiresAt)],
+);
+
+/**
  * Campaign domain tables (Phase 1 / ADR-008). These carry no money: goals are a
  * target amount only; donations, ledger, and payouts arrive in Phases 2–3. The
  * lifecycle state machine lives in `@helpkoro/domain`; the CHECK constraints

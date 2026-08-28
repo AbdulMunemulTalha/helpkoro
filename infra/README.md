@@ -9,7 +9,6 @@ Local development infrastructure and (later) deployment manifests.
 | Service  | Purpose                         | Local address          |
 | -------- | ------------------------------- | ---------------------- |
 | Postgres | Primary database + money ledger | `localhost:5432`       |
-| Redis    | Queues (BullMQ), rate limits    | `localhost:6379`       |
 | MinIO    | S3-compatible object storage    | `localhost:9000` (API) |
 | MinIO UI | Bucket console                  | `localhost:9001`       |
 

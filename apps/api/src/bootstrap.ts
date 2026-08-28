@@ -26,13 +26,13 @@ export async function createApp(): Promise<CreatedApp> {
 
   const adapter = new FastifyAdapter({
     loggerInstance: logger,
-    // In production the API runs behind a platform proxy (Render). Trust the
+    // In production the API runs behind a platform proxy (Vercel). Trust the
     // `X-Forwarded-*` headers so `request.ip` is the real client address, which
     // the auth rate limiter keys on (rate-limit.guard.ts). Without this every
     // request would share the proxy's IP and collapse into one global bucket.
     // Left off in dev/test where there is no proxy and the socket is authoritative.
     // NOTE (hardening): `true` trusts the whole forwarded chain; pin the hop count
-    // once Render's proxy topology is confirmed so `X-Forwarded-For` can't be spoofed.
+    // once Vercel's proxy topology is confirmed so `X-Forwarded-For` can't be spoofed.
     trustProxy: env.NODE_ENV === 'production',
     // The canonical correlation id: honour a valid inbound header, else mint a
     // fresh UUIDv7. This becomes `request.id`; the onRequest hook propagates it.

@@ -12,7 +12,6 @@ import { DiagnosticsController } from './v1/diagnostics.controller';
 import { FeatureFlagsModule } from './feature-flags/feature-flags.module';
 import { HealthModule } from './health/health.module';
 import { DatabaseModule } from './infra/database.module';
-import { RedisModule } from './infra/redis.module';
 import { ReviewsModule } from './reviews/reviews.module';
 
 export interface AppModuleOptions {
@@ -34,7 +33,6 @@ export class AppModule {
         ConfigModule,
         LoggerModule.forRoot(options.logger),
         DatabaseModule,
-        RedisModule,
         HealthModule,
         FeatureFlagsModule,
         AuditModule,

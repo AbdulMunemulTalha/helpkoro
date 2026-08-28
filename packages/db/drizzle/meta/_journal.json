@@ -22,6 +22,13 @@
       "when": 1787579252731,
       "tag": "0002_superb_wolfpack",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1787914212489,
+      "tag": "0003_abnormal_centennial",
+      "breakpoints": true
     }
   ]
 }

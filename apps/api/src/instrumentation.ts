@@ -1,6 +1,6 @@
 // OpenTelemetry bootstrap. This module MUST be imported before Nest/Fastify or
-// any instrumented library (http, pg, ioredis) so the auto-instrumentations can
-// patch them as they load — hence it is the very first import in `main.ts`.
+// any instrumented library (http, pg) so the auto-instrumentations can patch
+// them as they load — hence it is the very first import in `main.ts`.
 //
 // Tracing is opt-in: with no `OTEL_EXPORTER_OTLP_ENDPOINT` set, the SDK starts
 // with no exporter (spans are created but dropped) so the API runs fine without

@@ -19,12 +19,11 @@ describe('health probes', () => {
     expect(res.json()).toMatchObject({ status: 'ok', checks: { process: 'ok' } });
   });
 
-  it('GET /health/ready → 200 with postgres + redis ok', async () => {
+  it('GET /health/ready → 200 with postgres ok', async () => {
     const res = await app.inject({ method: 'GET', url: '/health/ready' });
     expect(res.statusCode).toBe(200);
     const body = res.json() as { status: string; checks: Record<string, string> };
     expect(body.status).toBe('ok');
     expect(body.checks.postgres).toBe('ok');
-    expect(body.checks.redis).toBe('ok');
   });
 });

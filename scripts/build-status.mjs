@@ -86,7 +86,7 @@ const PHASES = [
         evidence: ['turbo.json', 'pnpm-workspace.yaml'],
       },
       {
-        label: 'Local services (Docker Compose: Postgres, Redis, MinIO)',
+        label: 'Local services (Docker Compose: Postgres, MinIO)',
         evidence: ['infra/docker-compose.yml'],
       },
       { label: 'Continuous integration', evidence: ['.github/workflows/ci.yml'] },

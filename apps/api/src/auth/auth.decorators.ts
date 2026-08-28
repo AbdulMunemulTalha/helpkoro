@@ -34,7 +34,7 @@ export interface RateLimitOptions {
   limit: number;
   /** Window length in seconds. */
   windowSeconds: number;
-  /** Stable name segment for the Redis key (defaults to the route path). */
+  /** Stable name segment for the rate-limit counter key (defaults to the route path). */
   name?: string;
 }
 export const RATE_LIMIT_KEY = 'auth:rateLimit';

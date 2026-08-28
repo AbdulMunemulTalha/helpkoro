@@ -6,7 +6,6 @@ describe('parseEnv', () => {
     const env = parseEnv(apiEnvSchema, {
       NODE_ENV: 'test',
       DATABASE_URL: 'postgresql://u:p@localhost:5432/db',
-      REDIS_URL: 'redis://localhost:6379',
     });
     expect(env.PORT).toBe(3001);
     expect(env.REQUEST_ID_HEADER).toBe('x-request-id');
@@ -24,7 +23,6 @@ describe('parseEnv', () => {
       parseEnv(apiEnvSchema, {
         NODE_ENV: 'test',
         DATABASE_URL: 'not-a-url',
-        REDIS_URL: 'redis://localhost:6379',
       }),
     ).toThrow();
   });
@@ -33,7 +31,6 @@ describe('parseEnv', () => {
     const env = parseEnv(apiEnvSchema, {
       NODE_ENV: 'test',
       DATABASE_URL: 'postgresql://u:p@localhost:5432/db',
-      REDIS_URL: 'redis://localhost:6379',
     });
     expect(env.AUTH_ACCESS_TOKEN_TTL_SECONDS).toBe(900);
     expect(env.AUTH_REFRESH_TOKEN_TTL_SECONDS).toBe(1_209_600);
@@ -47,7 +44,6 @@ describe('parseEnv', () => {
       parseEnv(apiEnvSchema, {
         NODE_ENV: 'production',
         DATABASE_URL: 'postgresql://u:p@localhost:5432/db',
-        REDIS_URL: 'redis://localhost:6379',
       }),
     ).toThrow(/AUTH_ACCESS_TOKEN_SECRET/);
   });
@@ -58,7 +54,6 @@ describe('parseEnv', () => {
       parseEnv(apiEnvSchema, {
         NODE_ENV: 'test',
         DATABASE_URL: 'postgresql://u:p@localhost:5432/db',
-        REDIS_URL: 'redis://localhost:6379',
         AUTH_ACCESS_TOKEN_SECRET: shared,
         AUTH_REFRESH_TOKEN_SECRET: shared,
       }),
@@ -69,7 +64,6 @@ describe('parseEnv', () => {
     const env = parseEnv(apiEnvSchema, {
       NODE_ENV: 'production',
       DATABASE_URL: 'postgresql://u:p@localhost:5432/db',
-      REDIS_URL: 'redis://localhost:6379',
       AUTH_ACCESS_TOKEN_SECRET: 'x'.repeat(40),
       AUTH_REFRESH_TOKEN_SECRET: 'y'.repeat(40),
     });

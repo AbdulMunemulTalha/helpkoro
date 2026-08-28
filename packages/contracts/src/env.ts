@@ -31,7 +31,6 @@ export const apiEnvSchema = baseEnvSchema
   .extend({
     PORT: z.coerce.number().int().min(1).max(65535).default(3001),
     DATABASE_URL: urlString,
-    REDIS_URL: urlString,
     OTEL_SERVICE_NAME: z.string().default('helpkoro-api'),
     OTEL_EXPORTER_OTLP_ENDPOINT: urlString.optional(),
     REQUEST_ID_HEADER: z.string().default('x-request-id'),

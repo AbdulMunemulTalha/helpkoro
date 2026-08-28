@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "description": "HelpKoro API and worker entrypoints (NestJS on Fastify)",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "build": "nest build",
     "dev": "nest start --watch",
@@ -27,7 +30,6 @@
     "@opentelemetry/semantic-conventions": "^1.43.0",
     "drizzle-orm": "^0.45.2",
     "fastify": "^5.12.1",
-    "ioredis": "^6.0.0",
     "jose": "^5.10.0",
     "pino": "^10.3.1",
     "reflect-metadata": "^0.2.2",
