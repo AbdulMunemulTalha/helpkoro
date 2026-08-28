@@ -1,0 +1,57 @@
+<!doctype html>
+<!--
+  Why this file exists
+  --------------------
+  This project is an API-only Vercel deployment: all traffic is served by the
+  serverless function in `apps/api/api/index.ts` (NestJS on Fastify), and the
+  catch-all rewrite in `vercel.json` routes every path into it.
+
+  Vercel still runs a static "output directory" check at the end of every build
+  and FAILS if that directory is missing OR EMPTY
+  (https://vercel.com/docs/errors/error-list#missing-public-directory). A pure
+  API build produces no static assets, so we ship this single placeholder page
+  to satisfy the check. Do not delete it — the deploy will break without it.
+
+  Only `/` is served from here; `/health`, `/health/ready`, and everything under
+  `/v1` fall through the rewrite to the Nest app.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>HelpKoro API</title>
+    <style>
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        color: #1f2937;
+        background: #f9fafb;
+      }
+      main {
+        text-align: center;
+        padding: 1.5rem;
+      }
+      code {
+        background: #eef2ff;
+        padding: 0.1rem 0.35rem;
+        border-radius: 0.25rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>HelpKoro API</h1>
+      <p>This service is running. There is no web UI here.</p>
+      <p>
+        Health: <code>/health</code> · Business API: <code>/v1</code>
+      </p>
+    </main>
+  </body>
+</html>
