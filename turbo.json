@@ -1,5 +1,12 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalEnv": ["NODE_ENV"],
+  "globalPassThroughEnv": [
+    "API_URL",
+    "DATABASE_URL",
+    "AUTH_ACCESS_TOKEN_SECRET",
+    "AUTH_REFRESH_TOKEN_SECRET"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
