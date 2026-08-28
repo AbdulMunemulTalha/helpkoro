@@ -68,7 +68,8 @@ function minorUnitsFromMajor(major: number, currency: string): number {
 
 function buildPayload(draft: Draft): Record<string, unknown> {
   const major = Number(draft.goalMajor);
-  const goalAmount = Number.isFinite(major) && major > 0 ? minorUnitsFromMajor(major, draft.currency) : 0;
+  const goalAmount =
+    Number.isFinite(major) && major > 0 ? minorUnitsFromMajor(major, draft.currency) : 0;
   const payload: Record<string, unknown> = {
     title: draft.title.trim(),
     summary: draft.summary.trim(),
@@ -91,7 +92,11 @@ function buildPayload(draft: Draft): Record<string, unknown> {
 /** Lightweight per-step validation (UX only; the server re-validates authoritatively). */
 function validateStep(step: number, draft: Draft): Record<string, string> {
   const e: Record<string, string> = {};
-  if (step === 1 && draft.beneficiaryType === 'someone_else' && !draft.beneficiaryRelationship.trim()) {
+  if (
+    step === 1 &&
+    draft.beneficiaryType === 'someone_else' &&
+    !draft.beneficiaryRelationship.trim()
+  ) {
     e.beneficiaryRelationship = 'errors.relationshipRequired';
   }
   if (step === 2) {
@@ -129,7 +134,8 @@ export function StartWizard({
       if (raw) {
         const saved = JSON.parse(raw) as { draft?: Partial<Draft>; step?: number };
         if (saved.draft) setDraft((d) => ({ ...d, ...saved.draft }));
-        if (typeof saved.step === 'number') setStep(Math.min(Math.max(saved.step, 0), STEP_COUNT - 1));
+        if (typeof saved.step === 'number')
+          setStep(Math.min(Math.max(saved.step, 0), STEP_COUNT - 1));
       }
     } catch {
       // Ignore malformed storage — start fresh.
@@ -174,7 +180,9 @@ export function StartWizard({
 
   return (
     <div>
-      <p className="text-sm font-medium text-brand">{t('stepProgress', { current: step + 1, total: STEP_COUNT })}</p>
+      <p className="text-sm font-medium text-brand">
+        {t('stepProgress', { current: step + 1, total: STEP_COUNT })}
+      </p>
       <h1 className="mt-1 text-2xl font-semibold">{t('title')}</h1>
 
       <div className="mt-6">
@@ -347,8 +355,14 @@ export function StartWizard({
             <dl className="divide-y divide-neutral-200 rounded-xl border border-neutral-200 text-sm">
               <Row label={t('cause.titleLabel')} value={draft.title} />
               <Row label={t('cause.categoryLabel')} value={tc(draft.category)} />
-              <Row label={t('beneficiary.legend')} value={t(`beneficiary.${draft.beneficiaryType}`)} />
-              <Row label={t('cause.goalLabel', { currency: draft.currency })} value={draft.goalMajor} />
+              <Row
+                label={t('beneficiary.legend')}
+                value={t(`beneficiary.${draft.beneficiaryType}`)}
+              />
+              <Row
+                label={t('cause.goalLabel', { currency: draft.currency })}
+                value={draft.goalMajor}
+              />
             </dl>
 
             <div className="space-y-2 rounded-md bg-neutral-50 p-3 text-sm text-neutral-600">

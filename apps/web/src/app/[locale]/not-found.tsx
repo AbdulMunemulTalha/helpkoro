@@ -10,8 +10,8 @@ export default function NotFound() {
     <section className="mx-auto w-full max-w-2xl px-4 py-20 text-center">
       <h1 className="text-2xl font-bold">Page not found · পৃষ্ঠাটি খুঁজে পাওয়া যায়নি</h1>
       <p className="mt-3 text-neutral-600">
-        The page you’re looking for doesn’t exist or is no longer available. · আপনি যে পৃষ্ঠাটি খুঁজছেন
-        তা নেই বা আর উপলব্ধ নয়।
+        The page you’re looking for doesn’t exist or is no longer available. · আপনি যে পৃষ্ঠাটি
+        খুঁজছেন তা নেই বা আর উপলব্ধ নয়।
       </p>
       <Link href="/" className="mt-6 inline-block font-semibold text-brand underline">
         HelpKoro

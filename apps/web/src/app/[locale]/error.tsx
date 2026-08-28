@@ -4,7 +4,12 @@ import { useTranslations } from 'next-intl';
 
 // Error boundaries must be Client Components. It renders inside the locale
 // layout, so the NextIntlClientProvider context is available for translations.
-export default function LocaleError({ reset }: { error: Error & { digest?: string }; reset: () => void }) {
+export default function LocaleError({
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
   const t = useTranslations('common');
 
   return (

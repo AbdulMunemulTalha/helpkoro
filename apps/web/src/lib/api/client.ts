@@ -76,8 +76,9 @@ function extractError(
   status: number,
 ): { code: StableErrorCode; message: string; details?: unknown } {
   if (parsed && typeof parsed === 'object' && 'error' in parsed) {
-    const error = (parsed as { error: { code: StableErrorCode; message: string; details?: unknown } })
-      .error;
+    const error = (
+      parsed as { error: { code: StableErrorCode; message: string; details?: unknown } }
+    ).error;
     return { code: error.code, message: error.message, details: error.details };
   }
   return {
@@ -87,7 +88,10 @@ function extractError(
 }
 
 /** Low-level proxied request. Returns a discriminated result; only throws when the API is unreachable. */
-export async function apiRequest<T>(path: string, init: ApiRequestInit = {}): Promise<ApiResult<T>> {
+export async function apiRequest<T>(
+  path: string,
+  init: ApiRequestInit = {},
+): Promise<ApiResult<T>> {
   const method = (init.method ?? 'GET').toUpperCase();
   const url = new URL(`/v1${path}`, env.API_URL);
   if (init.query) {
@@ -149,7 +153,12 @@ export async function apiRequest<T>(path: string, init: ApiRequestInit = {}): Pr
     };
   }
 
-  return { ok: false, status: response.status, setCookies, error: extractError(parsed, response.status) };
+  return {
+    ok: false,
+    status: response.status,
+    setCookies,
+    error: extractError(parsed, response.status),
+  };
 }
 
 /** Proxied read that throws {@link AppError} on any non-2xx (surfaces via the error boundary). */

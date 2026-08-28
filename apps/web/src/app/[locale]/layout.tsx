@@ -11,7 +11,8 @@ import '../globals.css';
 
 export const metadata: Metadata = {
   title: { default: 'HelpKoro', template: '%s · HelpKoro' },
-  description: 'Trusted, Bangladesh-first fundraising for personal, community, and emergency needs.',
+  description:
+    'Trusted, Bangladesh-first fundraising for personal, community, and emergency needs.',
 };
 
 // Pre-render both locale shells at build time.

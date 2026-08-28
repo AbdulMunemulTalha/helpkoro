@@ -37,7 +37,9 @@ function parseSetCookie(raw: string): ParsedSetCookie | null {
 
   const rawSameSite = attrs.get('samesite')?.toLowerCase();
   const sameSite: SameSite =
-    rawSameSite === 'strict' || rawSameSite === 'none' || rawSameSite === 'lax' ? rawSameSite : 'lax';
+    rawSameSite === 'strict' || rawSameSite === 'none' || rawSameSite === 'lax'
+      ? rawSameSite
+      : 'lax';
   const maxAgeRaw = attrs.get('max-age');
   const maxAge = maxAgeRaw !== undefined ? Number.parseInt(maxAgeRaw, 10) : undefined;
 

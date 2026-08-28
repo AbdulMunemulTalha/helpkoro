@@ -73,8 +73,8 @@ export async function createCampaignDraft(
 
 /** Submit an owned draft for review (draft → submitted). */
 export async function submitCampaign(id: string): Promise<ApiResult<CampaignOrganizerView>> {
-  return apiMutate<CampaignOrganizerView>(
-    `/organizer/campaigns/${encodeURIComponent(id)}/submit`,
-    { method: 'POST', body: {} },
-  );
+  return apiMutate<CampaignOrganizerView>(`/organizer/campaigns/${encodeURIComponent(id)}/submit`, {
+    method: 'POST',
+    body: {},
+  });
 }

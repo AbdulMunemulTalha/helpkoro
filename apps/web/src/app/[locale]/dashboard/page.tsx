@@ -63,7 +63,9 @@ export default async function DashboardPage({ params, searchParams }: PageProps)
       <div className="flex items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold">{t('title')}</h1>
-          <p className="mt-1 text-sm text-neutral-600">{t('greeting', { name: user.displayName })}</p>
+          <p className="mt-1 text-sm text-neutral-600">
+            {t('greeting', { name: user.displayName })}
+          </p>
         </div>
         <form action={logout}>
           <SubmitButton variant="ghost" pendingLabel={t('loggingOut')}>
